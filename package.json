@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cron": "^1.8.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "node-fetch": "^3.2.3"

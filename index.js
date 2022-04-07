@@ -8,7 +8,7 @@ const app = express();
 
 let caltrainData;
 
-console.log("fetched new data");
+console.log("fetched new data at " + new Date());
 
 fetch(
   `https://api.511.org/transit/VehicleMonitoring?api_key=${process.env.NEXT_PUBLIC_CALTRAIN_API_KEY}&agency=CT&format=json`
@@ -21,7 +21,7 @@ fetch(
 caltrainData = new Date();
 
 setInterval(() => {
-  console.log("fetched new data");
+  console.log("fetched new data at " + new Date());
   fetch(
     `https://api.511.org/transit/VehicleMonitoring?api_key=${process.env.NEXT_PUBLIC_CALTRAIN_API_KEY}&agency=CT&format=json`
   )
