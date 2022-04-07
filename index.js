@@ -1,10 +1,16 @@
 import fetch from "node-fetch";
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const app = express();
+
+var corsOptions = {
+  origin: "https://www.therailmap.com",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 let caltrainData;
 
@@ -31,7 +37,7 @@ setInterval(() => {
     });
 }, 60 * 1000);
 
-app.get("/v1/caltrain", (req, res) => {
+app.get("/v1/caltrain", cors(corsOptions), (req, res) => {
   res.status(200).json(caltrainData);
 });
 
