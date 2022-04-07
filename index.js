@@ -31,7 +31,7 @@ setInterval(() => {
     });
 }, 60 * 1000);
 
-app.get("/api/caltrain", (req, res) => {
+app.get("/v1/caltrain", (req, res) => {
   res.status(200).json(caltrainData);
 });
 
