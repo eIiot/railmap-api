@@ -11,6 +11,7 @@ app.use(cors());
 
 let caltrainData;
 let viaRailData;
+let actData;
 
 console.log("fetched new data at " + new Date());
 
@@ -22,13 +23,19 @@ fetch(
     caltrainData = data;
   });
 
+fetch(
+  `https://api.511.org/transit/VehicleMonitoring?api_key=${process.env.NEXT_PUBLIC_CALTRAIN_API_KEY}&agency=AC&format=json`
+)
+  .then((res) => res.json())
+  .then((data) => {
+    actData = data;
+  });
+
 fetch(`https://tsimobile.viarail.ca/data/allData.json`)
   .then((res) => res.json())
   .then((data) => {
     viaRailData = data;
   });
-
-caltrainData = new Date();
 
 setInterval(() => {
   console.log("fetched new data at " + new Date());
@@ -41,6 +48,14 @@ setInterval(() => {
       caltrainData = data;
     });
 
+  fetch(
+    `https://api.511.org/transit/VehicleMonitoring?api_key=${process.env.NEXT_PUBLIC_CALTRAIN_API_KEY}&agency=AC&format=json`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      actData = data;
+    });
+
   fetch(`https://tsimobile.viarail.ca/data/allData.json`)
     .then((res) => res.json())
     .then((data) => {
@@ -50,6 +65,10 @@ setInterval(() => {
 
 app.get("/v1/caltrain", (req, res) => {
   res.status(200).json(caltrainData);
+});
+
+app.get("/v1/act", (req, res) => {
+  res.status(200).json(actData);
 });
 
 app.get("/v1/viarail", (req, res) => {
