@@ -24,7 +24,8 @@ setInterval(() => {
     .then((res) => res.json())
     .then((data) => {
       caltrainData = data;
-    });
+    })
+    .catch((err) => console.log(err));
 
   fetch(
     `https://api.511.org/transit/VehicleMonitoring?api_key=${process.env.NEXT_PUBLIC_CALTRAIN_API_KEY}&agency=AC&format=json`
@@ -32,13 +33,15 @@ setInterval(() => {
     .then((res) => res.json())
     .then((data) => {
       actData = data;
-    });
+    })
+    .catch((err) => console.log(err));
 
   fetch(`https://tsimobile.viarail.ca/data/allData.json`)
     .then((res) => res.json())
     .then((data) => {
       viaRailData = data;
-    });
+    })
+    .catch((err) => console.log(err));
 }, 2 * 60 * 1000);
 
 app.get("/v1/caltrain", (req, res) => {
