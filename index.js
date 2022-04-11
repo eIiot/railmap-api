@@ -39,7 +39,7 @@ setInterval(() => {
     .then((data) => {
       viaRailData = data;
     });
-}, 60 * 1000);
+}, 2 * 60 * 1000);
 
 app.get("/v1/caltrain", (req, res) => {
   res.status(200).json(caltrainData);
