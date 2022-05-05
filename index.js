@@ -9,9 +9,9 @@ const app = express();
 
 app.use(cors());
 
-let caltrainData,
-  viaRailData,
-  actData = { error: "Starting up, please wait..." };
+let caltrainData = { error: "Starting up, please wait..." };
+let viaRailData = { error: "Starting up, please wait..." };
+let actData = { error: "Starting up, please wait..." };
 
 console.log("fetched new data at " + new Date());
 
